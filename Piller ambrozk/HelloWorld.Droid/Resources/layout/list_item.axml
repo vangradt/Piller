@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:id="@+id/label_name" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        style="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:id="@+id/label_dosage" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        style="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:id="@+id/days" />
+  <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        style="@style/Base.TextAppearance.AppCompat.Subhead"
+        android:id="@+id/hours" />
+</LinearLayout>
