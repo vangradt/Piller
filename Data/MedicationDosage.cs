@@ -2,11 +2,14 @@
 using SQLite;
 using System.Collections.Generic;
 using System.Linq;
+using Piller.ViewModels;
+using MvvmCross.Core.ViewModels;
+using System.Windows.Input;
 
 namespace Piller.Data
 {
     [Table("MEDICATION_DOSAGE")]
-    public class MedicationDosage
+    public class MedicationDosage 
     {
         [PrimaryKey, AutoIncrement]
         public int? Id { get; set; }
@@ -39,6 +42,18 @@ namespace Piller.Data
                     HoursEncoded = string.Join(";", value.Select(i => i.ToString(@"hh\:mm")));
             }
 
+        }
+        [Ignore]
+        public MvxCommand ShowGalleryCommand
+        {
+            get
+            {
+                return new MvxCommand(ShowGallery);
+            }
+        }
+        public void ShowGallery()
+        {
+           // this.ShowViewModel<PhotoGalleryViewModel>(new MedicationDosageNavigation { MedicationDosageId = this.Id.Value });
         }
     }
 }

@@ -10,18 +10,24 @@ using Piller.Droid.BindingConverters;
 using Android.Views;
 using System.Collections.Generic;
 using System.Linq;
+using ReactiveUI;
+using Piller.ViewModels;
+using System.Reactive;
 
 namespace Piller.Droid.Views
 {
 	public class MedicationSummaryAdapter : MvxAdapter
 	{
-		public MedicationSummaryAdapter(Context context) : base(context)
-        {
-		}
+        public ReactiveCommand<Data.MedicationDosage, Unit> ShowGallery { get; }
 
-		public MedicationSummaryAdapter(Context context, IMvxAndroidBindingContext bindingContext) : base(context, bindingContext)
+        public MedicationSummaryAdapter(Context context) : base(context)
         {
-		}
+            
+        }
+
+        public MedicationSummaryAdapter(Context context, IMvxAndroidBindingContext bindingContext) : base(context, bindingContext)
+        {
+        }
 
 		public MedicationSummaryAdapter(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
@@ -34,6 +40,7 @@ namespace Piller.Droid.Views
             var name = view.FindViewById<TextView>(Resource.Id.label_medication_name);
             var time = view.FindViewById<TextView>(Resource.Id.label_medication_time);
             var daysOfWeek = view.FindViewById<TextView>(Resource.Id.label_medication_days_of_week);
+            var pictureButton = view.FindViewById<Button>(Resource.Id.pictureButton);
 
             var bset = view.CreateBindingSet<MvxListItemView, MedicationDosage>();
 
@@ -62,8 +69,8 @@ namespace Piller.Droid.Views
 				.To(x => x.Days)
                 .For(v => v.Visibility)
                 .WithConversion(new InlineValueConverter<DaysOfWeek, ViewStates>(dosageHours => dosageHours == DaysOfWeek.None ? ViewStates.Gone : ViewStates.Visible));
-            
-			bset.Apply();
+
+            bset.Apply();
 
 			return view;
 		}

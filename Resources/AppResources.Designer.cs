@@ -47,23 +47,23 @@ namespace Piller.Resources {
             }
         }
         
-        public static string MedicationDosageView_MedicationName {
+       /* public static string MedicationDosageView_MedicationName {
             get {
                 return ResourceManager.GetString("MedicationDosageView_MedicationName", resourceCulture);
             }
-        }
+        }*/
         
-        public static string MedicationSummaryListViewModel_Title {
+       /* public static string MedicationSummaryListViewModel_Title {
             get {
                 return ResourceManager.GetString("MedicationSummaryListViewModel_Title", resourceCulture);
             }
-        }
+        }*/
         
-        public static string MedicationDosageViewModel_Title {
+       /* public static string MedicationDosageViewModel_Title {
             get {
                 return ResourceManager.GetString("MedicationDosageViewModel_Title", resourceCulture);
             }
-        }
+        }*/
         
         public static string MedicationDosageView_SaveError {
             get {

@@ -49,7 +49,7 @@ namespace Piller.Droid.Views
 			//Toolbar will now take on default actionbar characteristics
 			SetSupportActionBar(toolbar);
 
-			SupportActionBar.Title = AppResources.MedicationDosageViewModel_Title;
+			//SupportActionBar.Title = AppResources.MedicationDosageViewModel_Title;
 			nameText = FindViewById<EditText>(Resource.Id.NameEditText);
 			dosageText = FindViewById<EditText>(Resource.Id.DosageEditText);
 
@@ -132,7 +132,7 @@ namespace Piller.Droid.Views
                       .WithConversion(new InlineValueConverter<string, string>(medicationName =>
                       {
                           if (string.IsNullOrEmpty(medicationName))
-                              return this.ViewModel.Id.HasValue ? "" : AppResources.MedicationDosageViewModel_Title;
+                              return "";//this.ViewModel.Id.HasValue ? "" : AppResources.MedicationDosageViewModel_Title;
                           return medicationName;
                       }));
 
