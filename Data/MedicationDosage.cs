@@ -5,11 +5,12 @@ using System.Linq;
 using Piller.ViewModels;
 using MvvmCross.Core.ViewModels;
 using System.Windows.Input;
+using Android.Util;
 
 namespace Piller.Data
 {
     [Table("MEDICATION_DOSAGE")]
-    public class MedicationDosage 
+    public class MedicationDosage
     {
         [PrimaryKey, AutoIncrement]
         public int? Id { get; set; }
@@ -51,9 +52,9 @@ namespace Piller.Data
                 return new MvxCommand(ShowGallery);
             }
         }
-        public void ShowGallery()
+        private void ShowGallery()
         {
-           // this.ShowViewModel<PhotoGalleryViewModel>(new MedicationDosageNavigation { MedicationDosageId = this.Id.Value });
+            //this.ShowViewModel<PhotoGalleryViewModel>(new MedicationDosageNavigation { MedicationDosageId = this.Id.Value });
         }
     }
 }

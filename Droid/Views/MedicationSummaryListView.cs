@@ -63,10 +63,6 @@ namespace Piller.Droid.Views
 
             bindingSet.Apply();
 
-            var bindingSet2 = this.CreateBindingSet<MedicationSummaryListView, MedicationDosage>();
-            bindingSet2.Bind(pictures)
-                .To(vm => vm.ShowGalleryCommand);
-            bindingSet2.Apply();
         }
 	}
 }

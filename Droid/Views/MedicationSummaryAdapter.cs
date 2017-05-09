@@ -70,6 +70,9 @@ namespace Piller.Droid.Views
                 .For(v => v.Visibility)
                 .WithConversion(new InlineValueConverter<DaysOfWeek, ViewStates>(dosageHours => dosageHours == DaysOfWeek.None ? ViewStates.Gone : ViewStates.Visible));
 
+            bset.Bind(pictureButton)
+                .To(v => v.ShowGalleryCommand);
+
             bset.Apply();
 
 			return view;
