@@ -40,7 +40,7 @@ namespace Piller.iOS.Views
 
         private FormDefinition createEditForm()
         {
-            drugNameElement = new SingleLineEditElement { Title = AppResources.MedicationDosageView_MedicationName };
+            //drugNameElement = new SingleLineEditElement { Title = AppResources.MedicationDosageView_MedicationName };
             var drugEntrySection = new Section(String.Empty, new List<Element> { drugNameElement });
 
             var rootElement = new FormDefinition(new List<Section> { drugEntrySection });

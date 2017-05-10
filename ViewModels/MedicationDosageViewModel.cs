@@ -9,12 +9,20 @@ using Acr.UserDialogs;
 using Piller.Resources;
 using ReactiveUI;
 using MvvmCross.Plugins.Messenger;
+using Android.Util;
 
 namespace Piller.ViewModels
 {
     public class MedicationDosageViewModel : MvxViewModel
     {
         private IPermanentStorageService storage = Mvx.Resolve<IPermanentStorageService>();
+
+        private byte[] bytes;
+        public byte[] Bytes
+        {
+            get { return this.bytes; }
+            set { this.SetProperty(ref this.bytes, value); }
+        }
 
         //identyfikator rekordu, uzywany w trybie edycji
         private int? id;
@@ -120,7 +128,9 @@ namespace Piller.ViewModels
                         | (this.Friday ? DaysOfWeek.Friday : DaysOfWeek.None)
                         | (this.Saturday ? DaysOfWeek.Saturday : DaysOfWeek.None)
                         | (this.Sunday ? DaysOfWeek.Sunday : DaysOfWeek.None),
-                    DosageHours = this.DosageHours
+                    DosageHours = this.DosageHours,
+                    Bytes = this.Bytes
+
                 };
 
                 await this.storage.SaveAsync<MedicationDosage>(dataRecord);
@@ -191,6 +201,7 @@ namespace Piller.ViewModels
                 Saturday = item.Days.HasFlag(DaysOfWeek.Saturday);
                 Sunday = item.Days.HasFlag(DaysOfWeek.Sunday);
                 DosageHours = new RxUI.ReactiveList<TimeSpan>(item.DosageHours);
+                Bytes = item.Bytes;
             }
       
         }

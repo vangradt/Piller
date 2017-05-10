@@ -16,6 +16,7 @@ namespace Piller.Services
 
         private readonly string databaseFileName = "piller.db";
         private SQLiteAsyncConnection connection;
+        private SQLiteConnection connection2;
 
         public PermanentStorageService ()
         {

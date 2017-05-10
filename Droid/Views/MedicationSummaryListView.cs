@@ -62,7 +62,6 @@ namespace Piller.Droid.Views
                 .To(vm => vm.Edit);
 
             bindingSet.Apply();
-
         }
 	}
 }

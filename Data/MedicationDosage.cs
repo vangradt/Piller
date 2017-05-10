@@ -5,7 +5,8 @@ using System.Linq;
 using Piller.ViewModels;
 using MvvmCross.Core.ViewModels;
 using System.Windows.Input;
-using Android.Util;
+using MvvmCross.Platform;
+using MvvmCross.Plugins.Messenger;
 
 namespace Piller.Data
 {
@@ -23,6 +24,8 @@ namespace Piller.Data
 
         //lista godzin w postaci hh:mm;hh:mm...
         public string HoursEncoded { get; set; }
+
+        public byte[] Bytes;
 
         //kodowanie i dekodowanie godzin. Tej wlasciwosci nie zapisujemy do bazy
         [Ignore]
@@ -44,6 +47,7 @@ namespace Piller.Data
             }
 
         }
+
         [Ignore]
         public MvxCommand ShowGalleryCommand
         {
@@ -52,8 +56,9 @@ namespace Piller.Data
                 return new MvxCommand(ShowGallery);
             }
         }
-        private void ShowGallery()
+        public void ShowGallery()
         {
+            Mvx.Resolve<IMvxMessenger>().Publish(new ShowGalleryMessage(this, this));
             //this.ShowViewModel<PhotoGalleryViewModel>(new MedicationDosageNavigation { MedicationDosageId = this.Id.Value });
         }
     }

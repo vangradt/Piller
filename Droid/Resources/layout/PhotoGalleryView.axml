@@ -3,22 +3,22 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-  <include
-    layout="@layout/toolbar" />
-  <Button
-    android:id="@+id/take_photo"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Take photo" />
-  <Button
-      android:text="Select photo"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/select_photo" />
-  <ImageView
-      android:id="@+id/photo"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      local:MvxBind="Bitmap Bytes,Converter=InMemoryImage" />
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/toolbar" />
+    <Button
+        android:id="@+id/take_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Zrób zdjęcie" />
+    <Button
+        android:text="Wybierz zdjęcie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/select_photo" />
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="Bitmap Bytes,Converter=InMemoryImage" />
 </LinearLayout>
