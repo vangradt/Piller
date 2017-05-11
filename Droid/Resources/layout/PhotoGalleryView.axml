@@ -3,22 +3,132 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <include
-        layout="@layout/toolbar" />
-    <Button
-        android:id="@+id/take_photo"
+    android:layout_height="match_parent"
+    android:id="@+id/linearLayout2">
+  <include
+      layout="@layout/toolbar"
+      android:id="@+id/include1" />
+  <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
+    <TextView
+        android:text="Zdjęcie opakowania:"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Zrób zdjęcie" />
-    <Button
-        android:text="Wybierz zdjęcie"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/select_photo" />
-    <ImageView
-        android:id="@+id/photo"
+        android:padding="6dip"
+        android:textColor="#000000"
+        android:id="@+id/textView1" />
+    <View
+           style="@style/Divider"/>
+    <RelativeLayout
         android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:padding="6dip">
+      <ImageView
+          android:id="@+id/photo_packaging"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          local:MvxBind="Bitmap Bytes,Converter=InMemoryImage" />
+      <Button
+          android:id="@+id/take_photo"
+          android:layout_width="200dip"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:text="Zrób zdjęcie" />
+      <Button
+          android:text="Wybierz zdjęcie"
+          android:layout_width="200dip"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_below="@id/take_photo"
+          android:id="@+id/select_photo" />
+
+    </RelativeLayout>
+  </LinearLayout>
+  <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
+    <TextView
+        android:text="Zdjęcie tabletki:"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Bitmap Bytes,Converter=InMemoryImage" />
+        android:padding="6dip"
+        android:textColor="#000000"
+        android:id="@+id/textView2" />
+    <View
+           style="@style/Divider"/>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:padding="6dip">
+      <ImageView
+          android:id="@+id/photo_pill"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          local:MvxBind="Bitmap Bytes_pill,Converter=InMemoryImage" />
+      <Button
+          android:id="@+id/take_photo_pill"
+          android:layout_width="200dip"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:text="Zrób zdjęcie" />
+      <Button
+          android:text="Wybierz zdjęcie"
+          android:layout_width="200dip"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_below="@id/take_photo_pill"
+          android:id="@+id/select_photo_pill" />
+
+    </RelativeLayout>
+  </LinearLayout>
+  <LinearLayout
+         android:orientation="vertical"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content">
+    <TextView
+        android:text="Zdjęcie recepty:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="6dip"
+        android:textColor="#000000"
+        android:id="@+id/textView3" />
+    <View
+           style="@style/Divider"/>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:padding="6dip">
+      <ImageView
+          android:id="@+id/photo_rx"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          local:MvxBind="Bitmap Bytes_rx,Converter=InMemoryImage" />
+      <Button
+          android:id="@+id/take_photo_rx"
+          android:layout_width="200dip"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:text="Zrób zdjęcie" />
+      <Button
+          android:text="Wybierz zdjęcie"
+          android:layout_width="200dip"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_below="@id/take_photo_rx"
+          android:id="@+id/select_photo_rx" />
+
+    </RelativeLayout>
+  </LinearLayout>
 </LinearLayout>

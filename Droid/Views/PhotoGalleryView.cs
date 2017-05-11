@@ -37,7 +37,15 @@ namespace Piller.Droid.Views
 
             var takePhoto = FindViewById<Button>(Resource.Id.take_photo);
             var selectPhoto = FindViewById<Button>(Resource.Id.select_photo);
-            var photo = FindViewById<ImageView>(Resource.Id.photo);
+            var photo_packaging = FindViewById<ImageView>(Resource.Id.photo_packaging);
+
+            var takePhoto_pill = FindViewById<Button>(Resource.Id.take_photo_pill);
+            var selectPhoto_pill = FindViewById<Button>(Resource.Id.select_photo_pill);
+            var photo_pill = FindViewById<ImageView>(Resource.Id.photo_pill);
+
+            var takePhoto_rx = FindViewById<Button>(Resource.Id.take_photo_rx);
+            var selectPhoto_rx = FindViewById<Button>(Resource.Id.select_photo_rx);
+            var photo_rx = FindViewById<ImageView>(Resource.Id.photo_rx);
 
             var bSet = this.CreateBindingSet<PhotoGalleryView, PhotoGalleryViewModel>();
 
@@ -47,8 +55,26 @@ namespace Piller.Droid.Views
             bSet.Bind(selectPhoto)
                         .To(vm => vm.SelectPhotoCommand);
 
-            bSet.Bind(photo)
+            bSet.Bind(takePhoto_pill)
+                        .To(vm => vm.TakePhotoPillCommand);
+
+            bSet.Bind(selectPhoto_pill)
+                        .To(vm => vm.SelectPhotoPillCommand);
+
+            bSet.Bind(takePhoto_rx)
+                        .To(vm => vm.TakePhotoRxCommand);
+
+            bSet.Bind(selectPhoto_rx)
+                        .To(vm => vm.SelectPhotoRxCommand);
+
+            bSet.Bind(photo_packaging)
                         .To(vm => vm.Bytes);
+
+            bSet.Bind(photo_pill)
+                .To(vm => vm.Bytes_pill);
+
+            bSet.Bind(photo_rx)
+                .To(vm => vm.Bytes_rx);
 
             bSet.Apply();
         }

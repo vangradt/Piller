@@ -23,6 +23,20 @@ namespace Piller.ViewModels
             set { this.SetProperty(ref this.bytes, value); }
         }
 
+        private byte[] bytes_pill;
+        public byte[] Bytes_pill
+        {
+            get { return this.bytes_pill; }
+            set { this.SetProperty(ref this.bytes_pill, value); }
+        }
+
+        private byte[] bytes_rx;
+        public byte[] Bytes_rx
+        {
+            get { return this.bytes_rx; }
+            set { this.SetProperty(ref this.bytes_rx, value); }
+        }
+
         //identyfikator rekordu, uzywany w trybie edycji
         private int? id;
         public int? Id { 
@@ -128,8 +142,9 @@ namespace Piller.ViewModels
                         | (this.Saturday ? DaysOfWeek.Saturday : DaysOfWeek.None)
                         | (this.Sunday ? DaysOfWeek.Sunday : DaysOfWeek.None),
                     DosageHours = this.DosageHours,
-                    Bytes = this.Bytes
-
+                    Bytes = this.Bytes,
+                    Bytes_pill = this.Bytes_pill,
+                    Bytes_rx = this.Bytes_rx
                 };
 
                 await this.storage.SaveAsync<MedicationDosage>(dataRecord);
@@ -201,6 +216,8 @@ namespace Piller.ViewModels
                 Sunday = item.Days.HasFlag(DaysOfWeek.Sunday);
                 DosageHours = new RxUI.ReactiveList<TimeSpan>(item.DosageHours);
                 Bytes = item.Bytes;
+                Bytes_pill = item.Bytes_pill;
+                Bytes_rx = item.Bytes_rx;
             }
       
         }

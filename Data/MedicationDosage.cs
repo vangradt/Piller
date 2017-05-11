@@ -27,6 +27,10 @@ namespace Piller.Data
 
         public byte[] Bytes { get; set; }
 
+        public byte[] Bytes_pill { get; set; }
+
+        public byte[] Bytes_rx { get; set; }
+
         //kodowanie i dekodowanie godzin. Tej wlasciwosci nie zapisujemy do bazy
         [Ignore]
         public IEnumerable<TimeSpan> DosageHours
