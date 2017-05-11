@@ -9,7 +9,6 @@ using System.Reactive.Linq;
 using System.IO;
 using Piller.Services;
 using Piller.Data;
-using Android.Util;
 using MvvmCross.Plugins.Messenger;
 using RxUI = ReactiveUI;
 
@@ -85,7 +84,6 @@ namespace Piller.ViewModels
         public async void Init(MedicationDosageNavigation nav)
         {
             item = await storage.GetAsync<Data.MedicationDosage>(nav.MedicationDosageId);
-            Log.Debug("id", item.Id.ToString());
             this.Bytes = item.Bytes;
         }
     }

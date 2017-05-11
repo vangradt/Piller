@@ -9,7 +9,6 @@ using Acr.UserDialogs;
 using Piller.Resources;
 using ReactiveUI;
 using MvvmCross.Plugins.Messenger;
-using Android.Util;
 
 namespace Piller.ViewModels
 {

@@ -8,7 +8,6 @@ using Piller.Services;
 using MvvmCross.Platform;
 using System.Threading.Tasks;
 using MvvmCross.Plugins.Messenger;
-using Android.Util;
 
 namespace Piller.ViewModels
 {

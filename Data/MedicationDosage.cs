@@ -25,7 +25,7 @@ namespace Piller.Data
         //lista godzin w postaci hh:mm;hh:mm...
         public string HoursEncoded { get; set; }
 
-        public byte[] Bytes;
+        public byte[] Bytes { get; set; }
 
         //kodowanie i dekodowanie godzin. Tej wlasciwosci nie zapisujemy do bazy
         [Ignore]
