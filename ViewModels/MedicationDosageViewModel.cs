@@ -9,6 +9,7 @@ using Acr.UserDialogs;
 using Piller.Resources;
 using ReactiveUI;
 using MvvmCross.Plugins.Messenger;
+using Android.App;
 
 namespace Piller.ViewModels
 {
@@ -82,7 +83,7 @@ namespace Piller.ViewModels
         }
 
         private bool thursday;
-        public bool Thurdsday
+        public bool Thursday
         {
             get { return thursday; }
             set { this.SetProperty(ref thursday, value); }
@@ -125,6 +126,30 @@ namespace Piller.ViewModels
         {
             this.DosageHours = new RxUI.ReactiveList<TimeSpan>();
 
+            var canSave = this.WhenAny(vm => vm.MedicationName,
+                                       vm => vm.MedicationDosage,
+                                       vm => vm.Monday,
+                                       vm => vm.Tuesday,
+                                       vm => vm.Wednesday,
+                                       vm => vm.Thursday,
+                                       vm => vm.Friday,
+                                       vm => vm.Saturday,
+                                       vm => vm.Sunday,
+                                       vm => vm.DosageHours.Count,
+                                       (name, dosage, monday, tuesday, wednesday, thursday, friday, saturday, sunday, hours) => 
+                                       !String.IsNullOrWhiteSpace(name.Value) && 
+                                       !String.IsNullOrWhiteSpace(dosage.Value) &&
+                                       (monday.Value ||
+                                       tuesday.Value ||
+                                       wednesday.Value ||
+                                       thursday.Value ||
+                                       friday.Value ||
+                                       saturday.Value ||
+                                       sunday.Value
+                                       ) &&
+                                       hours.Value != 0
+                );
+
             this.Save = RxUI.ReactiveCommand.CreateFromTask<Unit, bool>(async _ =>
             {
 
@@ -137,7 +162,7 @@ namespace Piller.ViewModels
                         (this.Monday ? DaysOfWeek.Monday : DaysOfWeek.None)
                         | (this.Tuesday ? DaysOfWeek.Tuesday : DaysOfWeek.None)
                         | (this.Wednesday ? DaysOfWeek.Wednesday : DaysOfWeek.None)
-                        | (this.Thurdsday ? DaysOfWeek.Thursday : DaysOfWeek.None)
+                        | (this.Thursday ? DaysOfWeek.Thursday : DaysOfWeek.None)
                         | (this.Friday ? DaysOfWeek.Friday : DaysOfWeek.None)
                         | (this.Saturday ? DaysOfWeek.Saturday : DaysOfWeek.None)
                         | (this.Sunday ? DaysOfWeek.Sunday : DaysOfWeek.None),
@@ -150,8 +175,10 @@ namespace Piller.ViewModels
                 await this.storage.SaveAsync<MedicationDosage>(dataRecord);
 
                 return true;
-            });
+            }, canSave);
 
+
+            
 
             var canDelete = this.WhenAny(x => x.Id, id => id.Value.HasValue);
             this.Delete = RxUI.ReactiveCommand.CreateFromTask<Data.MedicationDosage, bool>(async _ =>
@@ -164,7 +191,7 @@ namespace Piller.ViewModels
                    return false;
              }, canDelete);
 
-            this.SelectAllDays = RxUI.ReactiveCommand.Create(() => { Monday = true; Tuesday = true; Wednesday = true; Thurdsday = true; Friday = true; Saturday = true; Sunday = true; });
+            this.SelectAllDays = RxUI.ReactiveCommand.Create(() => { Monday = true; Tuesday = true; Wednesday = true; Thursday = true; Friday = true; Saturday = true; Sunday = true; });
 
 
             //save sie udal, albo nie - tu dosatniemy rezultat komendy. Jak sie udal, to zamykamy ViewModel
@@ -210,7 +237,7 @@ namespace Piller.ViewModels
                 Monday = item.Days.HasFlag(DaysOfWeek.Monday);
                 Tuesday = item.Days.HasFlag(DaysOfWeek.Tuesday);
                 Wednesday = item.Days.HasFlag(DaysOfWeek.Wednesday);
-                Thurdsday = item.Days.HasFlag(DaysOfWeek.Thursday);
+                Thursday = item.Days.HasFlag(DaysOfWeek.Thursday);
                 Friday = item.Days.HasFlag(DaysOfWeek.Friday);
                 Saturday = item.Days.HasFlag(DaysOfWeek.Saturday);
                 Sunday = item.Days.HasFlag(DaysOfWeek.Sunday);

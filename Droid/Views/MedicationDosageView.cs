@@ -14,6 +14,7 @@ using System.Reactive;
 using MvvmCross.Binding.Droid.Views;
 using Android.Opengl;
 using Piller.Droid.BindingConverters;
+using ReactiveUI;
 
 namespace Piller.Droid.Views
 {
@@ -36,6 +37,7 @@ namespace Piller.Droid.Views
 		CheckBox sunday;
 
         MedicationDosageTimeLayout hoursList;
+
 
 		protected override void OnCreate(Bundle bundle)
 		{
@@ -70,8 +72,10 @@ namespace Piller.Droid.Views
             hoursList.ItemTemplateId = Resource.Layout.time_item;
 
 
-			//obsluga usuwania - jedna z kilku mozliwosci
-			//wcisniecie przyscisku delete spowoduje wywolanie na adapterze komendy z usuwana godzina (implementacja w MedicationDosageTimeListAdapter
+            
+
+            //obsluga usuwania - jedna z kilku mozliwosci
+            //wcisniecie przyscisku delete spowoduje wywolanie na adapterze komendy z usuwana godzina (implementacja w MedicationDosageTimeListAdapter
             var hourAdapter = (MedicationDosageTimeListAdapter)hoursList.Adapter;//dialog tworzymy i pokazujemy z kodu
             hourAdapter.DeleteRequested.Subscribe(time => this.ViewModel.DosageHours.Remove(time));
 
@@ -107,13 +111,16 @@ namespace Piller.Droid.Views
 			var saveItem = menu.FindItem(Resource.Id.action_save);
 
 			return base.OnCreateOptionsMenu(menu);
-		}
+        }
 
-		public override bool OnOptionsItemSelected(IMenuItem item)
+        
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
 		{
-			//sprawdzamy, czy przycisk ma id zdefiniowane dla Save, i czy Save mozna wywolac (to na przyszlosc, gdy bedzie walidacja)
-			// jak tak - odpalamy komendę. To dziwne Subscribe na końcu do wymóg ReactiveUI7
-			if (item.ItemId == Resource.Id.action_save && ((ICommand)this.ViewModel.Save).CanExecute(null))
+
+            //sprawdzamy, czy przycisk ma id zdefiniowane dla Save, i czy Save mozna wywolac (to na przyszlosc, gdy bedzie walidacja)
+            // jak tak - odpalamy komendę. To dziwne Subscribe na końcu do wymóg ReactiveUI7
+            if (item.ItemId == Resource.Id.action_save && ((ICommand)this.ViewModel.Save).CanExecute(null))
 				this.ViewModel.Save.Execute(Unit.Default).Subscribe();
 			return base.OnOptionsItemSelected(item);
 		}
@@ -159,7 +166,7 @@ namespace Piller.Droid.Views
 			bindingSet.Bind(thursday)
 			   .For(x => x.Checked)
 			   .Mode(MvvmCross.Binding.MvxBindingMode.TwoWay)
-			   .To(vm => vm.Thurdsday);
+			   .To(vm => vm.Thursday);
 			bindingSet.Bind(friday)
 			   .For(x => x.Checked)
 			   .Mode(MvvmCross.Binding.MvxBindingMode.TwoWay)
