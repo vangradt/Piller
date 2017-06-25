@@ -11,22 +11,28 @@ using System.IO;
 
 namespace Piller.Services
 {
-    public class MedicinesDatabaseService : IMedicineDatabaseService
+    public abstract class MedicinesDatabaseService : IMedicineDatabaseService
     {
         private readonly IMvxFileStore fileStore = Mvx.Resolve<IMvxFileStore>();
 
-        
 
-        private readonly string databaseFileName = "leki.db";
+
+
         private SQLiteAsyncConnection connection;
 
         public MedicinesDatabaseService()
         {
-            this.connection = new SQLiteAsyncConnection(this.fileStore.NativePath("Piller") + databaseFileName);
+            var dbFileName = PrepareDatabaseFile();
+            this.connection = new SQLiteAsyncConnection(dbFileName, SQLiteOpenFlags.ReadOnly);
+
 
             this.connection.GetConnection();
+            xx();
         }
 
+        protected abstract string PrepareDatabaseFile();
+
+   
         public async Task<T> GetAsync<T>(long KodEAN) where T : new()
         {
             return await this.connection.FindAsync<T>(KodEAN);

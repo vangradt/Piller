@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Piller.Droid</RootNamespace>
     <AssemblyName>Piller.Droid</AssemblyName>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -250,6 +250,7 @@
     <Compile Include="Views\RootView.cs" />
     <Compile Include="Views\MedicalCardView.cs" />
     <Compile Include="Views\HolidayView.cs" />
+    <Compile Include="Services\DroidMedicinesDatabaseService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -262,9 +263,6 @@
     <AndroidResource Include="Resources\layout\customNotification.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <EmbeddedResource Include="Resources\leki.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <None Include="ToDo-MvvmCross\_ Droid UI.txt" />
     <AndroidResource Include="Resources\drawable\later.png" />
     <AndroidResource Include="Resources\drawable\no.png" />
@@ -380,6 +378,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\icons8_Barcode_26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\leki.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidAsset>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Build.Download.0.4.3\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.3\build\Xamarin.Build.Download.targets')" />

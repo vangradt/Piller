@@ -34,7 +34,8 @@ namespace Piller.Droid
         {
             var mvxFragmentsPresenter = new MvxFragmentsPresenter(AndroidViewAssemblies);
             Mvx.RegisterSingleton<IMvxAndroidViewPresenter>(mvxFragmentsPresenter);
-			Mvx.RegisterSingleton<ImageLoaderService>(new AndroidImageLoader());
+            Mvx.RegisterSingleton<ImageLoaderService>(new AndroidImageLoader());
+            Mvx.RegisterSingleton<IMedicineDatabaseService>(() => new DroidMedicinesDatabaseService());
             return mvxFragmentsPresenter;
 
         }
@@ -51,7 +52,7 @@ namespace Piller.Droid
         {
             base.InitializeLastChance();
 
-			Mvx.RegisterSingleton<INotificationService>(new AndroidNotificationService(this.ApplicationContext));
+            Mvx.RegisterSingleton<INotificationService>(new AndroidNotificationService(this.ApplicationContext));
         }
     }
 }

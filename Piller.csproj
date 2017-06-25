@@ -112,9 +112,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Compile Include="PillerApp.cs" />
-    <Content Include="Resources\leki.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
