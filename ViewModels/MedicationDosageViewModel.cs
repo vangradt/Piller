@@ -14,6 +14,7 @@ using System.IO;
 using MvvmCross.Plugins.File;
 using Services;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Piller.ViewModels
 {
@@ -55,9 +56,10 @@ namespace Piller.ViewModels
             set { this.SetProperty(ref medicationName, value); }
         }
 
-        public async Task<Data.Medicines> GetNameByEAN(long kodEAN)
+        public async Task<Data.Medicines> GetNameByEAN(string kodEAN)
         {
-            return await this.medicinesDatabase.GetAsync<Data.Medicines>(kodEAN);
+            var smth = await this.medicinesDatabase.GetAsync(kodEAN);
+            return smth;
         }
 
         long ean;

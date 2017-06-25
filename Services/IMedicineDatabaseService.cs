@@ -7,6 +7,7 @@ namespace Piller.Services
 {
     public interface IMedicineDatabaseService
     {
-        Task<T> GetAsync<T>(long KodEAN) where T : new();
+        Task<Data.Medicines> GetAsync(string KodEAN);
+        //Task<List<Data.Medicines>> Query(string kodEAN);
     }
 }

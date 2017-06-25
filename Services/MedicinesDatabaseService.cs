@@ -27,15 +27,21 @@ namespace Piller.Services
 
 
             this.connection.GetConnection();
-            xx();
         }
 
         protected abstract string PrepareDatabaseFile();
 
    
-        public async Task<T> GetAsync<T>(long KodEAN) where T : new()
+        public async Task<Data.Medicines> GetAsync(string KodEAN)
         {
-            return await this.connection.FindAsync<T>(KodEAN);
+            var smth = await this.connection.GetAsync<Data.Medicines>(KodEAN);
+            return smth;
         }
+        /*
+        public Task<List<Data.Medicines>> Query(string kodEAN)
+        {
+            return this.connection.QueryAsync<Data.Medicines>("select * from ProduktLeczniczyOpakowanie where KodEAN = ?", kodEAN);
+        }
+        */
     }
 }

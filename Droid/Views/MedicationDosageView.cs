@@ -21,6 +21,8 @@ using System.Reactive.Linq;
 using Android.Support.Design.Widget;
 using ZXing.Net.Mobile;
 using ZXing.Mobile;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Piller.Droid.Views
 {
@@ -45,7 +47,9 @@ namespace Piller.Droid.Views
 
         FloatingActionButton barScan;
 
-        long ean;
+        string ean;
+
+        Task<Data.Medicines> task;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -95,8 +99,9 @@ namespace Piller.Droid.Views
 
                 if (result != null)
                 {
-                    ean = Convert.ToInt64(result.Text);
-                    nameText.SetText(ViewModel.GetNameByEAN(ean).Result.NazwaProduktu, TextView.BufferType.Editable);
+                    ean = result.Text;
+                    task = ViewModel.GetNameByEAN(ean);
+                    nameText.SetText(task.Result.NazwaProduktu, TextView.BufferType.Editable);
                 }
                    
             };
