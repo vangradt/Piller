@@ -47,10 +47,6 @@ namespace Piller.Droid.Views
 
         FloatingActionButton barScan;
 
-        string ean;
-
-        Task<Data.Medicines> task;
-
         protected override void OnCreate(Bundle bundle)
         {
 
@@ -99,9 +95,7 @@ namespace Piller.Droid.Views
 
                 if (result != null)
                 {
-                    ean = result.Text;
-                    task = ViewModel.GetNameByEAN(ean);
-                    nameText.SetText(task.Result.NazwaProduktu, TextView.BufferType.Editable);
+                    ViewModel.SetMedicinesName(result.Text);
                 }
                    
             };

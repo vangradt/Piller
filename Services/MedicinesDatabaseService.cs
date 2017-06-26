@@ -34,8 +34,7 @@ namespace Piller.Services
    
         public async Task<Data.Medicines> GetAsync(string KodEAN)
         {
-            var smth = await this.connection.GetAsync<Data.Medicines>(KodEAN);
-            return smth;
+            return await this.connection.FindAsync<Data.Medicines>(KodEAN);
         }
         /*
         public Task<List<Data.Medicines>> Query(string kodEAN)

@@ -36,6 +36,7 @@ namespace Piller.Droid
             Mvx.RegisterSingleton<IMvxAndroidViewPresenter>(mvxFragmentsPresenter);
             Mvx.RegisterSingleton<ImageLoaderService>(new AndroidImageLoader());
             Mvx.RegisterSingleton<IMedicineDatabaseService>(() => new DroidMedicinesDatabaseService());
+            Mvx.RegisterSingleton<IUserDialogs>(() => UserDialogs.Instance);
             return mvxFragmentsPresenter;
 
         }

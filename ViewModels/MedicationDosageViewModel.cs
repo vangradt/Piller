@@ -56,10 +56,19 @@ namespace Piller.ViewModels
             set { this.SetProperty(ref medicationName, value); }
         }
 
-        public async Task<Data.Medicines> GetNameByEAN(string kodEAN)
+        public async void SetMedicinesName(string kodEAN)
         {
-            var smth = await this.medicinesDatabase.GetAsync(kodEAN);
-            return smth;
+            Data.Medicines medicine =  await this.medicinesDatabase.GetAsync(kodEAN);
+
+            if(medicine != null)
+            {
+                MedicationName = medicine.NazwaProduktu;
+            }
+            else
+            {
+                MedicationName = "";
+                UserDialogs.Instance.Toast("Nie znaleziono w bazie leków");
+            }
         }
 
         long ean;
